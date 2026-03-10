@@ -1,2 +1,9 @@
-<h1>Adventures#index</h1>
-<p>Find me in app/views/adventures/index.html.erb</p>
+<h1>Your Adventures</h1>
+<%= link_to "New Adventure", new_adventure_path %>
+
+<% @adventures.each do |adventure| %>
+  <div>
+    <%= link_to "#{adventure.character_name} the #{adventure.character_class}", adventure_path(adventure) %>
+    <small><%= adventure.created_at.strftime("%b %d, %Y") %></small>
+  </div>
+<% end %>

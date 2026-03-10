@@ -1,2 +1,13 @@
-<h1>Adventures#new</h1>
-<p>Find me in app/views/adventures/new.html.erb</p>
+<h1>Create Your Character</h1>
+
+<%= form_with model: @adventure do |f| %>
+  <div>
+    <%= f.label :character_name, "Character Name" %>
+    <%= f.text_field :character_name, required: true %>
+  </div>
+  <div>
+    <%= f.label :character_class, "Class" %>
+    <%= f.select :character_class, ["Warrior", "Mage", "Rogue", "Cleric"] %>
+  </div>
+  <%= f.submit "Begin Adventure" %>
+<% end %>

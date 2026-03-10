@@ -1,2 +1,15 @@
-<h1>Adventures#show</h1>
-<p>Find me in app/views/adventures/show.html.erb</p>
+<h1><%= @adventure.character_name %> the <%= @adventure.character_class %></h1>
+
+<div id="messages">
+  <% @adventure.messages.order(:created_at).each do |message| %>
+    <div class="message <%= message.role %>">
+      <strong><%= message.role == "user" ? "You" : "Dungeon Master" %>:</strong>
+      <%= simple_format(message.content) %>
+    </div>
+  <% end %>
+</div>
+
+<%= form_with model: [@adventure, Message.new], url: adventure_messages_path(@adventure) do |f| %>
+  <%= f.text_area :content, placeholder: "What do you do?", required: true %>
+  <%= f.submit "Send" %>
+<% end %>
